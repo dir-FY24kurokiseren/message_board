@@ -1,6 +1,7 @@
 package models;
 
 import java.sql.Timestamp;
+import java.util.jar.Attributes.Name;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +9,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+import com.mysql.cj.Query;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(
+            name = "getAllMessages",
+            query = "SELECT m FROM Message AS m ORDER BY m.id DESC"
+    )
+})
 @Table(name = "messages")
 public class Message {
     @Id
